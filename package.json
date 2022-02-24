@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/manrope": "^4.5.4",
     "@types/styled-components": "^5.1.23",
     "axios": "^0.26.0",
     "next": "12.1.0",

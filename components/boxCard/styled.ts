@@ -70,4 +70,8 @@ export const ButtonDiceGenerate = styled.button`
   &:active {
     background-color: hsl(150, 50%, 50%);
   }
+
+  &:disabled {
+    background-color: hsl(150, 20%, 66%);
+  }
 `;

@@ -8,20 +8,34 @@ import {
   DividerWrapStyled,
   IdTextStyled,
 } from './styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function BoxCard() {
+  const [loading, setLoading] = useState(true);
   const [quote, setQuote] = useState({
     id: 117,
     text: `It is easy to sit up and take notice, what's difficult is getting up and taking action.`,
   });
 
+  const handleClick = () => {
+    setLoading(true);
+    console.log('click me');
+  };
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <BoxCardStyled>
-      {/* Display Quotes */}
-      <IdTextStyled>advice #{quote.id}</IdTextStyled>
-      <AdviceTextStyled>&ldquo;{quote.text}&rdquo;</AdviceTextStyled>
-      {/* Display Quotes */}
+      {loading ? null : (
+        <>
+          {/* Display Quotes */}
+          <IdTextStyled>advice #{quote.id}</IdTextStyled>
+          <AdviceTextStyled>&ldquo;{quote.text}&rdquo;</AdviceTextStyled>
+          {/* Display Quotes */}
+        </>
+      )}
 
       {/* Divider */}
       <DividerWrapStyled>
@@ -30,8 +44,8 @@ function BoxCard() {
       {/* Divider */}
 
       {/* Generate Button */}
-      <ButtonDiceGenerate>
-        <DiceIcon />
+      <ButtonDiceGenerate onClick={handleClick} disabled={loading}>
+        <DiceIcon loading={loading} />
       </ButtonDiceGenerate>
       {/* Generate Button */}
     </BoxCardStyled>

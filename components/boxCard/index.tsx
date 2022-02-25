@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import Divider from '../divider';
 
 import DiceIcon from '../dice';
@@ -8,18 +11,34 @@ import {
   DividerWrapStyled,
   IdTextStyled,
 } from './styled';
-import { useEffect, useState } from 'react';
 
 function BoxCard() {
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [quote, setQuote] = useState({
     id: 117,
-    text: `It is easy to sit up and take notice, what's difficult is getting up and taking action.`,
+    advice:
+      "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
   });
 
   const handleClick = () => {
     setLoading(true);
-    console.log('click me');
+    setError(false);
+
+    // Make Request
+    axios
+      .get('https://api.adviceslip.com/advice')
+      .then((response) => {
+        // handle success
+        const { slip } = response.data;
+        setQuote(slip);
+        setLoading(false);
+      })
+      .catch(() => {
+        // handle error
+        setLoading(false);
+        setError(true);
+      });
   };
 
   useEffect(() => {
@@ -28,14 +47,18 @@ function BoxCard() {
 
   return (
     <BoxCardStyled>
-      {loading ? null : (
-        <>
-          {/* Display Quotes */}
-          <IdTextStyled>advice #{quote.id}</IdTextStyled>
-          <AdviceTextStyled>&ldquo;{quote.text}&rdquo;</AdviceTextStyled>
-          {/* Display Quotes */}
-        </>
-      )}
+      {/* Display Quotes */}
+      <IdTextStyled loading={loading.toString()}>
+        advice #{error ? '##' : quote.id}
+      </IdTextStyled>
+      <AdviceTextStyled loading={loading.toString()} error={error.toString()}>
+        {error ? (
+          'Looks like something went wrong. Please try again in a moment!'
+        ) : (
+          <>&ldquo;{quote.advice}&rdquo;</>
+        )}
+      </AdviceTextStyled>
+      {/* Display Quotes */}
 
       {/* Divider */}
       <DividerWrapStyled>

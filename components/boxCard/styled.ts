@@ -10,22 +10,36 @@ export const BoxCardStyled = styled.section`
   border-radius: 15px;
   box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
 `;
+interface ParagraphProps {
+  loading?: string;
+}
 
-export const IdTextStyled = styled.p`
+export const IdTextStyled = styled.p<ParagraphProps>`
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
-  color: hsl(150, 100%, 66%);
+  color: ${(props) =>
+    props.loading === 'true' ? 'gray;' : 'hsl(150, 100%, 66%);'};
   font-size: 0.8em;
   font-weight: 800;
   letter-spacing: 5px;
 `;
 
-export const AdviceTextStyled = styled.h1`
+interface HeadingProps {
+  loading?: string;
+  error?: string;
+}
+
+export const AdviceTextStyled = styled.h1<HeadingProps>`
   margin: 2rem auto;
   padding: 0 1.6rem;
   text-align: center;
-  color: hsl(193, 38%, 86%);
+  color: ${(props) =>
+    props.loading === 'true'
+      ? 'gray;'
+      : props.error === 'true'
+      ? 'pink'
+      : 'hsl(193, 38%, 86%);'};
   font-size: 28px;
   line-height: 2.4rem;
   font-weight: 800;
@@ -72,6 +86,7 @@ export const ButtonDiceGenerate = styled.button`
   }
 
   &:disabled {
+    cursor: not-allowed;
     background-color: hsl(150, 20%, 66%);
   }
 `;

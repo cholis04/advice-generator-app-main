@@ -1,22 +1,19 @@
 import Head from 'next/head';
 
 import type { NextPage } from 'next';
-import styled from 'styled-components';
 
-const Title = styled.h1`
-  font-size: 4rem;
-  color: blue;
-`;
+import BoxCard from '../components/boxCard';
 
+// Functional Component
 const Home: NextPage = () => {
   return (
     <>
+      {/* Head */}
       <Head>
         <title>Frontend Mentor | Advice generator app</title>
       </Head>
-      <main>
-        <Title>Hello World</Title>
-      </main>
+      {/* Head */}
+      <BoxCard />
     </>
   );
 };

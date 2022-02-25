@@ -11,9 +11,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: "Manrope";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Manrope";
+    background-color:hsl(220, 22%, 16%);
   }
 
   img {

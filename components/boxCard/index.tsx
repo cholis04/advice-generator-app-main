@@ -63,7 +63,11 @@ function BoxCard() {
       {/* Divider */}
 
       {/* Generate Button */}
-      <ButtonDiceGenerate onClick={handleClick} disabled={loading}>
+      <ButtonDiceGenerate
+        onClick={handleClick}
+        disabled={loading}
+        aria-label="Generate new Advice"
+      >
         <DiceIcon loading={loading} />
       </ButtonDiceGenerate>
       {/* Generate Button */}

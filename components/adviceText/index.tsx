@@ -11,7 +11,7 @@ const AdviceTextStyled = styled.h1`
   margin: 2rem auto;
   padding: 0 1.6rem;
   text-align: center;
-  color: hsl(193, 38%, 86%);
+  color: ${(props) => props.theme.color};
   font-size: 28px;
   line-height: 2.4rem;
   font-weight: 800;
@@ -26,6 +26,7 @@ const AdviceTextStyled = styled.h1`
 function AdviceText({ advice, loading, error }: props) {
   const theme = {
     display: loading ? 'none' : 'block',
+    color: error ? 'hsla(0, 100%, 78%, 1)' : 'hsl(193, 38%, 86%)',
   };
 
   const errorText =
@@ -33,7 +34,7 @@ function AdviceText({ advice, loading, error }: props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <AdviceTextStyled>{error ? errorText : advice}</AdviceTextStyled>
+      <AdviceTextStyled>{error ? errorText : `“${advice}”`}</AdviceTextStyled>
     </ThemeProvider>
   );
 }

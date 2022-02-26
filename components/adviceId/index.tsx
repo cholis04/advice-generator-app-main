@@ -7,10 +7,11 @@ interface props {
 }
 
 const IdTextStyled = styled.p`
+  display: ${(props) => props.theme.display};
   margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
-  color: ${(props) => props.theme.colorText};
+  color: hsl(150, 100%, 66%);
   font-size: 0.8em;
   font-weight: 800;
   letter-spacing: 5px;
@@ -19,7 +20,7 @@ const IdTextStyled = styled.p`
 
 function AdviceId({ id, loading, error }: props) {
   const theme = {
-    colorText: loading ? 'hsl(150, 10%, 50%)' : 'hsl(150, 100%, 66%)',
+    display: loading ? 'none' : 'block',
   };
 
   return (

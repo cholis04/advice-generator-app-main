@@ -7,10 +7,11 @@ interface props {
 }
 
 const AdviceTextStyled = styled.h1`
+  display: ${(props) => props.theme.display};
   margin: 2rem auto;
   padding: 0 1.6rem;
   text-align: center;
-  color: ${(props) => props.theme.colorText};
+  color: hsl(193, 38%, 86%);
   font-size: 28px;
   line-height: 2.4rem;
   font-weight: 800;
@@ -24,7 +25,7 @@ const AdviceTextStyled = styled.h1`
 
 function AdviceText({ advice, loading, error }: props) {
   const theme = {
-    colorText: loading ? 'hsl(193, 10%, 50%)' : 'hsl(193, 38%, 86%)',
+    display: loading ? 'none' : 'block',
   };
 
   const errorText =

@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { BoxCardStyled, ButtonDiceGenerate, DividerWrapStyled } from './styled';
+
 import Divider from '../divider';
 
 import DiceIcon from '../dice';
-import {
-  AdviceTextStyled,
-  BoxCardStyled,
-  ButtonDiceGenerate,
-  DividerWrapStyled,
-  IdTextStyled,
-} from './styled';
+
+import AdviceId from '../adviceId';
+import AdviceText from '../adviceText';
 
 function BoxCard() {
-  const [loading, setLoading] = useState(true);
+  const apiURL = 'https://api.adviceslip.com/advice';
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [quote, setQuote] = useState({
     id: 117,
@@ -21,18 +20,18 @@ function BoxCard() {
       "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
   });
 
+  // Generate Advice On Button Clicked
   const handleClick = () => {
     setLoading(true);
     setError(false);
 
     // Make Request
     axios
-      .get('https://api.adviceslip.com/advice')
+      .get(apiURL)
       .then((response) => {
         // handle success
         const { slip } = response.data;
         setQuote(slip);
-        setLoading(false);
       })
       .catch(() => {
         // handle error
@@ -41,23 +40,20 @@ function BoxCard() {
       });
   };
 
+  // Update Quote
   useEffect(() => {
-    setLoading(false);
-  }, []);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [quote]);
 
   return (
     <BoxCardStyled>
       {/* Display Quotes */}
-      <IdTextStyled loading={loading.toString()}>
-        advice #{error ? '##' : quote.id}
-      </IdTextStyled>
-      <AdviceTextStyled loading={loading.toString()} error={error.toString()}>
-        {error ? (
-          'Looks like something went wrong. Please try again in a moment!'
-        ) : (
-          <>&ldquo;{quote.advice}&rdquo;</>
-        )}
-      </AdviceTextStyled>
+      <AdviceId id={quote?.id} loading={loading} error={error} />
+      <AdviceText advice={quote?.advice} loading={loading} error={error} />
       {/* Display Quotes */}
 
       {/* Divider */}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import { ThemeProvider } from 'styled-components';
 import { BoxCardStyled, ButtonDiceGenerate, DividerWrapStyled } from './styled';
 
 import Divider from '../divider';
@@ -19,6 +20,12 @@ function BoxCard() {
     advice:
       "It is easy to sit up and take notice, what's difficult is getting up and taking action.",
   });
+
+  // Theme
+  const theme = {
+    display: loading ? 'none' : 'block',
+    color: error ? 'hsla(0, 100%, 78%, 1)' : 'hsl(193, 38%, 86%)',
+  };
 
   // Generate Advice On Button Clicked
   const handleClick = () => {
@@ -52,8 +59,10 @@ function BoxCard() {
   return (
     <BoxCardStyled>
       {/* Display Quotes */}
-      <AdviceId id={quote?.id} loading={loading} error={error} />
-      <AdviceText advice={quote?.advice} loading={loading} error={error} />
+      <ThemeProvider theme={theme}>
+        <AdviceId id={quote?.id} loading={loading} error={error} />
+        <AdviceText advice={quote?.advice} loading={loading} error={error} />
+      </ThemeProvider>
       {/* Display Quotes */}
 
       {/* Divider */}

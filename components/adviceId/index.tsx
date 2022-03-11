@@ -1,4 +1,4 @@
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 
 interface props {
   id: number | undefined;
@@ -18,16 +18,8 @@ const IdTextStyled = styled.p`
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 `;
 
-function AdviceId({ id, loading, error }: props) {
-  const theme = {
-    display: loading ? 'none' : 'block',
-  };
-
-  return (
-    <ThemeProvider theme={theme}>
-      <IdTextStyled>advice #{error ? '##' : id}</IdTextStyled>
-    </ThemeProvider>
-  );
+function AdviceId({ id, error }: props) {
+  return <IdTextStyled>advice #{error ? '##' : id}</IdTextStyled>;
 }
 
 export default AdviceId;

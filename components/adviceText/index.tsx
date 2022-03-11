@@ -1,4 +1,4 @@
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 
 interface props {
   advice: string | undefined;
@@ -23,19 +23,12 @@ const AdviceTextStyled = styled.h1`
   }
 `;
 
-function AdviceText({ advice, loading, error }: props) {
-  const theme = {
-    display: loading ? 'none' : 'block',
-    color: error ? 'hsla(0, 100%, 78%, 1)' : 'hsl(193, 38%, 86%)',
-  };
-
+function AdviceText({ advice, error }: props) {
   const errorText =
     'Looks like something went wrong. Please try again in a moment!';
 
   return (
-    <ThemeProvider theme={theme}>
-      <AdviceTextStyled>{error ? errorText : `“${advice}”`}</AdviceTextStyled>
-    </ThemeProvider>
+    <AdviceTextStyled>{error ? errorText : `“${advice}”`}</AdviceTextStyled>
   );
 }
 

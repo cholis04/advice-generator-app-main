@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 import { ThemeProvider } from 'styled-components';
@@ -39,6 +39,7 @@ function BoxCard() {
         // handle success
         const { slip } = response.data;
         setQuote(slip);
+        setLoading(false);
       })
       .catch(() => {
         // handle error
@@ -46,15 +47,6 @@ function BoxCard() {
         setError(true);
       });
   };
-
-  // Update Quote
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [quote]);
 
   return (
     <BoxCardStyled>

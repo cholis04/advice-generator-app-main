@@ -4,12 +4,12 @@ import axios from 'axios';
 import { ThemeProvider } from 'styled-components';
 import { BoxCardStyled, ButtonDiceGenerate, DividerWrapStyled } from './styled';
 
-import Divider from '../divider';
+import Divider from '../../components/divider';
 
-import DiceIcon from '../dice';
+import DiceIcon from '../../components/dice';
 
-import AdviceId from '../adviceId';
-import AdviceText from '../adviceText';
+import AdviceId from '../../components/adviceId';
+import AdviceText from '../../components/adviceText';
 
 function BoxCard() {
   const apiURL = 'https://api.adviceslip.com/advice';

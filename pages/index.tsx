@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import type { NextPage } from 'next';
 
-import BoxCard from '../components/boxCard';
+import BoxCard from '../containers/boxCard';
 
 // Functional Component
 const Home: NextPage = () => {

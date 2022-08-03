@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 
-import Layout from '../components/layout/layout';
+import Layout from '../layouts/main';
 
 // Font Source
 import '@fontsource/manrope';

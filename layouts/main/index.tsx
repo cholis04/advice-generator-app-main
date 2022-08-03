@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styled from 'styled-components';
-import Footer from '../footer';
+import Footer from '../../components/footer';
 
 // Types
 interface LayoutProps {

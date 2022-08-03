@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const BoxCardStyled = styled.section`
   position: relative;
   margin: 0 auto;
+  margin-top: -1rem;
   padding: 3rem 2rem;
   background-color: hsl(218, 20%, 24%);
   width: 90%;

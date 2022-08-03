@@ -54,5 +54,4 @@ Users should be able to:
 
 ## Acknowledgments
 
-Many thanks to anyone who provided feedback.
-
+Many thanks to anyone who provided feedback
